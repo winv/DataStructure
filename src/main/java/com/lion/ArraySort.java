@@ -1,5 +1,6 @@
 package com.lion;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Arrays;
@@ -81,8 +82,78 @@ public class ArraySort {
         }
         return arr;
     }
+    //插入排序
+    public  static  int[] insertSort(int[] sourceArr) {
+        int[] arr = Arrays.copyOf(sourceArr, sourceArr.length);
+        int len = arr.length;
+        for (int i = 1; i < len; i++) {
+            int j = i;
+            int current = arr[i];
+            //此处注意 要先判断J，否则J=0时，j-1=-1会出现下标越界
+            while (j > 0 && arr[j - 1] > current) {
+                //依次挪动元素
+                arr[j] = arr[j - 1];
+                j--;
+            }
+            if (j != i) {
+                arr[j] = current;
+            }
+            printArray(arr);
+        }
+
+        return arr;
+    }
+    //希尔排序 改进后插入排序
+    public static  int[] shellSort(int[] sourceArr) {
+        int[] arr = Arrays.copyOf(sourceArr, sourceArr.length);
+        int len = arr.length;
+        int temp;
+        int gap = len / 2;
+        while (gap > 0) {
+            for (int i = gap; i < len; i++) {
+                temp = arr[i];
+                int prevIndex = i - gap;
+                while (prevIndex >= 0 && arr[prevIndex] > temp) {
+                    arr[prevIndex + gap] = arr[prevIndex];
+                    prevIndex -=gap;
+                }
+                arr[prevIndex + gap] = temp;
+            }
+            gap /= 2;
+        }
+        return arr;
+    }
+
+    //归并排序
+    public  static  int[]  mergeSort(@NotNull int[] sourceArr) {
+        int[] arr = Arrays.copyOf(sourceArr, sourceArr.length);
+        if (arr.length < 2)
+            return arr;
+        int mid = arr.length / 2;
+        int[] left = Arrays.copyOfRange(arr, 0, mid);
+        int[] right = Arrays.copyOfRange(arr, mid, arr.length);
+        return merge(mergeSort(left), mergeSort(right));
+    }
+    //归并排序实现
+    @Contract(pure = true)
+    public  static int[] merge(@NotNull int[] left , @NotNull int [] right) {
+        int[] result = new int[left.length + right.length];
+        for (int index = 0, i = 0, j = 0; index < result.length; index++) {
+            if (i >= left.length)
+                result[index] = right[j++];
+            else if (j >= right.length)
+                result[index] = left[i++];
+            else if (left[i] > right[j])
+                result[index] = right[j++];
+            else
+                result[index] = left[i++];
+        }
+        return result;
+    }
+
+
     //快速排序
-    public  static void  quickSortBase(int[] a){
+    public  static void  quickSort(int[] a){
         //code
     }
 
