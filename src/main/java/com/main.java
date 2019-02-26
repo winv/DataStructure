@@ -20,7 +20,8 @@ public class main {
 
         //ArraySort.printArray(ArraySort.insertSort(sourceArr));
         //ArraySort.printArray(ArraySort.shellSort(sourceArr));
-        ArraySort.printArray(ArraySort.mergeSort(sourceArr));
+        //ArraySort.printArray(ArraySort.mergeSort(sourceArr));
+        ArraySort.printArray(ArraySort.quickSort(sourceArr));
 
     }
 }

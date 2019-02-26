@@ -152,13 +152,36 @@ public class ArraySort {
     }
 
 
-    //快速排序
-    public  static void  quickSort(int[] a){
-        //code
+    public  static int[] quickSort(@NotNull int[] sourceArr){
+        int[] arr = Arrays.copyOf(sourceArr, sourceArr.length);
+        return  quickSortBase(arr,0,arr.length-1);
     }
 
+    //快速排序
+    private  static int[]  quickSortBase(int[] arr, int left, int right) {
+        if (left < right) {
+            int paritionIndex = partiton(arr, left, right);
+            quickSortBase(arr, left, paritionIndex - 1);
+            quickSortBase(arr, paritionIndex + 1, right);
+        }
+        return arr;
+    }
+    private static  int partiton(int[] arr,int left,int right) {
+        int pivot = left;
+        int index = pivot + 1;
+        for (int i = index; i <= right; i++) {
+            if (arr[i] < arr[pivot]) {
+                swap(arr, i, index);
+                index++;
+            }
+        }
+        swap(arr, pivot, index - 1);
+        return index - 1;
+    }
+
+
     //交换方法
-    public static void swap(@NotNull int arr[], int a , int b){
+    private static void swap(@NotNull int arr[], int a , int b){
         int temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
