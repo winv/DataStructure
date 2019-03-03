@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 
 public class ArraySort {
+    static int len;
     //冒泡基础版 时间复杂度0(n2)
     public static int[] bubbleSortBase(@NotNull int[] sourceArr) {
         int[] arr = Arrays.copyOf(sourceArr, sourceArr.length);
@@ -123,7 +124,6 @@ public class ArraySort {
         }
         return arr;
     }
-
     //归并排序
     public  static  int[]  mergeSort(@NotNull int[] sourceArr) {
         int[] arr = Arrays.copyOf(sourceArr, sourceArr.length);
@@ -150,13 +150,11 @@ public class ArraySort {
         }
         return result;
     }
-
-
+    //快速排序
     public  static int[] quickSort(@NotNull int[] sourceArr){
         int[] arr = Arrays.copyOf(sourceArr, sourceArr.length);
         return  quickSortBase(arr,0,arr.length-1);
     }
-
     //快速排序
     private  static int[]  quickSortBase(int[] arr, int left, int right) {
         if (left < right) {
@@ -178,15 +176,64 @@ public class ArraySort {
         swap(arr, pivot, index - 1);
         return index - 1;
     }
+    public  static int[] heapSort(int[] arr){
+        buildMaxHeap(arr);
+        for (int i = arr.length - 1; i > 0; i--) {
+            swap(arr, 0, i);
+            len--;
+            heapify(arr, 0);
+        }
+        return arr;
+    }
+    public  static void heapify(int[] arr,int i) {
+        int left = 2 * i + 1,
+                right = 2 * i + 2,
+                largest = i;
 
+        if (left < len && arr[left] > arr[largest]) {
+            largest = left;
+        }
 
+        if (right < len && arr[right] > arr[largest]) {
+            largest = right;
+        }
+        if (largest != i) {
+            swap(arr, i, largest);
+            heapify(arr, largest);
+        }
+    }
+    public  static void  buildMaxHeap(int[] arr){
+        len = arr.length;
+        for (int i = Math.abs(len/2); i >= 0; i--) {
+            heapify(arr, i);
+        }
+    }
+    //计数排序
+    public static int[] countingSort(int[] arr, int maxValue) {
+        int[] bucket = new int[maxValue + 1];
+        int sortedIndex = 0;
+        int arrLen = arr.length;
+        int bucketLen = maxValue + 1;
+        for (int i = 0; i < arrLen; i++) {
+            if (bucket[i]!=arr[i]) {
+                bucket[arr[i]] = 0;
+            }
+            bucket[arr[i]]++;
+        }
+        for (int j = 0; j < bucketLen; j++) {
+            while (bucket[j] > 0) {
+                arr[sortedIndex++] = j;
+                bucket[j]--;
+            }
+        }
+        return arr;
+    }
     //交换方法
     private static void swap(@NotNull int arr[], int a , int b){
         int temp = arr[a];
         arr[a] = arr[b];
         arr[b] = temp;
     }
-
     //打印方法
     public  static void printArray(@NotNull int[] arr){
         System.out.println("");

@@ -6,7 +6,7 @@ public class main {
     public static void main(String[] args) {
 
         System.out.println("");
-        int[] sourceArr={10,9,8,7,6,5,4,3,2,1};
+        int[] sourceArr={11,9,8,7,6,5,4,3,2,1};
 
         //冒泡 不做任何改进
         //ArraySort.printArray(ArraySort.bubbleSortBase(sourceArr));
@@ -21,7 +21,8 @@ public class main {
         //ArraySort.printArray(ArraySort.insertSort(sourceArr));
         //ArraySort.printArray(ArraySort.shellSort(sourceArr));
         //ArraySort.printArray(ArraySort.mergeSort(sourceArr));
-        ArraySort.printArray(ArraySort.quickSort(sourceArr));
-
+        //ArraySort.printArray(ArraySort.quickSort(sourceArr));
+        //ArraySort.printArray(ArraySort.heapSort(sourceArr));
+        ArraySort.printArray(ArraySort.countingSort(sourceArr,11));
     }
 }
