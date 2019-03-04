@@ -99,7 +99,7 @@ public class ArraySort {
             if (j != i) {
                 arr[j] = current;
             }
-            printArray(arr);
+            //printArray(arr);
         }
 
         return arr;
@@ -226,6 +226,45 @@ public class ArraySort {
                 bucket[j]--;
             }
         }
+        return arr;
+    }
+    //桶排序
+    public static int[] bucketSorts(int[] sourceArr){
+        int[] arr=Arrays.copyOf(sourceArr,sourceArr.length);
+        return bucketSort(arr,5);
+    }
+    private static int[] bucketSort(int[] arr,int bucketsize) {
+        if (arr.length == 0)
+            return arr;
+        int minValue = arr[0];
+        int maxValue = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] < minValue)
+                minValue = arr[i];
+            else if (maxValue > arr[i])
+                maxValue = arr[i];
+        }
+        int bucketCount = (int) Math.floor((maxValue - minValue) / bucketsize) + 1;
+        int[][] buckets = new int[bucketCount][0];
+        for (int i = 0; i < arr.length; i++) {
+            int index = (int) Math.floor((maxValue - minValue) / bucketsize);
+            buckets[index] = arrAppend(buckets[index], arr[i]);
+        }
+        int arrIndex = 0;
+        for (int[] bucket : buckets) {
+            if (bucket.length <= 0) {
+                continue;
+            }
+            bucket = insertSort(bucket);
+            for (int value : bucket) {
+                arr[arrIndex++] = value;
+            }
+        }
+        return arr;
+    }
+    private static int[] arrAppend(int[] arr,int value) {
+        arr = Arrays.copyOf(arr, arr.length + 1);
+        arr[arr.length - 1] = value;
         return arr;
     }
     //交换方法

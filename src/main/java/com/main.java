@@ -23,6 +23,7 @@ public class main {
         //ArraySort.printArray(ArraySort.mergeSort(sourceArr));
         //ArraySort.printArray(ArraySort.quickSort(sourceArr));
         //ArraySort.printArray(ArraySort.heapSort(sourceArr));
-        ArraySort.printArray(ArraySort.countingSort(sourceArr,11));
+        //ArraySort.printArray(ArraySort.countingSort(sourceArr,11));
+        ArraySort.printArray(ArraySort.bucketSorts(sourceArr));
     }
 }
