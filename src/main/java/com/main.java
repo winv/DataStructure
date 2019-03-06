@@ -1,12 +1,12 @@
 package com;
 
-import com.lion.ArraySort;
+import com.lion.*;
 
 public class main {
     public static void main(String[] args) {
 
         System.out.println("");
-        int[] sourceArr={11,9,8,7,6,5,4,3,2,1};
+        int[] sourceArr = {11, 9, 8, 7, 6, 5, 4, 3, 2, 1};
 
         //冒泡 不做任何改进
         //ArraySort.printArray(ArraySort.bubbleSortBase(sourceArr));
@@ -24,6 +24,27 @@ public class main {
         //ArraySort.printArray(ArraySort.quickSort(sourceArr));
         //ArraySort.printArray(ArraySort.heapSort(sourceArr));
         //ArraySort.printArray(ArraySort.countingSort(sourceArr,11));
-        ArraySort.printArray(ArraySort.bucketSorts(sourceArr));
+        //ArraySort.printArray(ArraySort.bucketSorts(sourceArr));
+        //ArraySort.printArray(ArraySort.redixSort(sourceArr));
+
+        //链表操作
+        Link link = new Link(1, "lee");
+        LinkList ll = new LinkList();
+        ll.insertFirst(link);
+        ll.insertFirst(new Link(2, "lee2"));
+        ll.insertFirst(new Link(3, "lee3"));
+
+        Link findlink = ll.find(2);
+        ll.displayList();
+        System.out.println(findlink.age);
+
+        DoubleLinkedList dll = new DoubleLinkedList();
+        dll.insertFirst(new DoubleLink(1, "lee"));
+        dll.insertFirst(new DoubleLink(2, "lee2"));
+        dll.insertFirst(new DoubleLink(3, "lee3"));
+        dll.insertLast(new DoubleLink(4, "lee4"));
+        boolean result=dll.insertAfter(new DoubleLink(4, "lee5"));
+        dll.displayList();
+        System.out.println(result);//after写入失败，需要检查
     }
 }

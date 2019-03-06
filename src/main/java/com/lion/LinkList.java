@@ -40,7 +40,7 @@ public class LinkList {
         Link cur = first;
         Link next = first.next;
         Link previous = null;
-        while(cur != null){
+        while(cur.next != null){
             if(cur.age == key){  //找到了要删除的链结点
                 link = cur;
                 //如果当前链结点的前驱为null，证明当其为链表的第一个链结点，删除该链结点后需要对first属性重新赋值
@@ -68,20 +68,21 @@ public class LinkList {
     public Link find(int key){
         Link link = null;
         Link cur = first;
-        Link next = null;
-        Link previous = null;
+        Link next = first.next;
+        //Link previous = null;
         while(cur != null){
             if(cur.age == key){
                 link = cur;
                 break;
-            }else if(cur.next == null){//当前链结点不是要找的目标且下一个链结点为null，则证明没有找到目标
+            }else if(next == null){//当前链结点不是要找的目标且下一个链结点为null，则证明没有找到目标
                 break;
             }
 
             //当前链结点不是要找的目标且存在下一个链结点，则向后继续寻找
-            next = next.next;
+            //next = next.next;此处源码有问题 next初始值为NULL
+            //previous = cur;
             cur = cur.next;
-            previous = cur;
+            next=cur;
         }
 
         return link;
@@ -91,5 +92,4 @@ public class LinkList {
     public boolean isEmpty(){
         return (first == null);
     }
-
 }
