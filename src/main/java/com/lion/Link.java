@@ -6,6 +6,7 @@ public class Link {
     public int age;
     public String name;
     public Link next;  //指向该链结点的下一个链结点
+    public Link previous;
 
     //构造方法
     public Link(int age,String name){

@@ -38,13 +38,29 @@ public class main {
         ll.displayList();
         System.out.println(findlink.age);
 
-        DoubleLinkedList dll = new DoubleLinkedList();
-        dll.insertFirst(new DoubleLink(1, "lee"));
-        dll.insertFirst(new DoubleLink(2, "lee2"));
-        dll.insertFirst(new DoubleLink(3, "lee3"));
-        dll.insertLast(new DoubleLink(4, "lee4"));
-        boolean result=dll.insertAfter(new DoubleLink(4, "lee5"));
+        DoublelyLinkList dll = new DoublelyLinkList();
+        dll.insertFirst(new Link(1, "lee"));
+        dll.insertFirst(new Link(2, "lee2"));
+        dll.insertFirst(new Link(3, "lee3"));
+        dll.insertLast(new Link(4, "lee4"));
+        boolean result=dll.insertAfter(new Link(4, "lee5"));
         dll.displayList();
-        System.out.println(result);//after写入失败，需要检查
+        System.out.println(result);
+
+        //写入有序链表
+        SortedLinkList sortedLinkList = new SortedLinkList();
+        sortedLinkList.insert(new Link(13, "lee13"));
+        sortedLinkList.insert(new Link(12, "lee12"));
+        sortedLinkList.insert(new Link(3, "lee3"));
+        sortedLinkList.insert(new Link(4, "lee4"));
+        sortedLinkList.displayList();
+
+        //写入有序链表
+        DoubleEndList doubleEndList = new DoubleEndList();
+        doubleEndList.insertFirst(new Link(13, "lee13"));
+        doubleEndList.insertFirst(new Link(12, "lee12"));
+        doubleEndList.insertLast(new Link(4, "lee4"));
+        doubleEndList.insertLast(new Link(3, "lee3"));
+        doubleEndList.displayList();
     }
 }
