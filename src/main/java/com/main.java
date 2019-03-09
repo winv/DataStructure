@@ -2,6 +2,10 @@ package com;
 
 import com.lion.*;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class main {
     public static void main(String[] args) {
 
@@ -62,5 +66,22 @@ public class main {
         doubleEndList.insertLast(new Link(4, "lee4"));
         doubleEndList.insertLast(new Link(3, "lee3"));
         doubleEndList.displayList();
+
+        System.out.println("输入需要检测的字符串：");
+        String str = getString();
+        BrecketChecker checker = new BrecketChecker(str);
+        checker.check();
+    }
+
+    public static String getString(){
+        String str = "";
+        try{
+            InputStreamReader reader =new InputStreamReader(System.in);
+            BufferedReader bReader = new BufferedReader(reader);
+            str = bReader.readLine();
+        }catch(IOException e){
+            e.printStackTrace();
+        }
+        return str;
     }
 }
