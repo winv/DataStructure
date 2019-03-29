@@ -13,8 +13,14 @@ public class Stack {
     }
 
     //入栈，同时，栈顶元素的下标加一
-    public void push(int elem){
-        stackArray[++top] = elem; //插入栈顶
+    public void push(int elem) {
+        int currIndex = ++top;
+        if (currIndex >= size) {
+            System.out.println("栈已满");
+            --top;
+            return;
+        }
+        stackArray[currIndex] = elem; //插入栈顶
     }
 
     //出栈，删除栈顶元素，同时，栈顶元素的下标减一

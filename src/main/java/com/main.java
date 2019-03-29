@@ -1,13 +1,14 @@
 package com;
 
 import com.lion.*;
+import org.omg.CORBA.INTERNAL;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         System.out.println("");
         int[] sourceArr = {11, 9, 8, 7, 6, 5, 4, 3, 2, 1};
@@ -47,7 +48,7 @@ public class main {
         dll.insertFirst(new Link(2, "lee2"));
         dll.insertFirst(new Link(3, "lee3"));
         dll.insertLast(new Link(4, "lee4"));
-        boolean result=dll.insertAfter(new Link(4, "lee5"));
+        boolean result = dll.insertAfter(new Link(4, "lee5"));
         dll.displayList();
         System.out.println(result);
 
@@ -67,10 +68,24 @@ public class main {
         doubleEndList.insertLast(new Link(3, "lee3"));
         doubleEndList.displayList();
 
-        System.out.println("输入需要检测的字符串：");
-        String str = getString();
-        BrecketChecker checker = new BrecketChecker(str);
-        checker.check();
+        //System.out.println("输入需要检测的字符串：");
+        //String str = getString();
+        //BrecketChecker checker = new BrecketChecker(str);
+        //checker.check();
+
+        Stack stack = new Stack(5);
+        for (int i = 0; i <= 5; i++) {
+            stack.push(i);
+        }
+        for (int i = 0; i < 5; i++) {
+            System.out.println(stack.pop());
+        }
+
+        Queue queue=new Queue(5);
+        for (int i = 0; i < 5; i++) queue.insert(i);
+        for (int i = 0; i < 5; i++) {
+            System.out.println(queue.pop());
+        }
     }
 
     public static String getString(){

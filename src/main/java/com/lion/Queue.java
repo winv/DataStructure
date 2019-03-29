@@ -44,6 +44,14 @@ public class Queue {
         return elem;
     }
 
+    //出队
+    public int pop() throws Exception{
+        if(isEmpty()){
+            throw new Exception("队列为空！");
+        }
+        return queArray[front++];
+    }
+
     //查看队头元素
     public int peek() throws Exception{
         if(isEmpty()){
@@ -66,6 +74,5 @@ public class Queue {
     public boolean isFull(){
         return (length == maxSize);
     }
-
 }
 
